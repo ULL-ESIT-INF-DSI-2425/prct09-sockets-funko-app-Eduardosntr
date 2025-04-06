@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "fileGestor.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node dist/fileGestor.js\"",
+    "dev": "tsc-watch --onSuccess \"node dist/funkoManager.js\"",
     "doc": "typedoc",
     "test": "vitest run",
     "coverage": "vitest run --coverage --coverage.include 'src/**/*'"
