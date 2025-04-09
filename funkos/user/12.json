@@ -1,0 +1,12 @@
+{
+  "id": 12,
+  "name": "Spiderman",
+  "description": "Funko de Spiderman",
+  "type": "Pop!",
+  "gender": "Marvel",
+  "franchise": "A saber",
+  "pieceNumber": 1,
+  "exclusive": true,
+  "specialFeatures": "Spiderman",
+  "value": 50
+}

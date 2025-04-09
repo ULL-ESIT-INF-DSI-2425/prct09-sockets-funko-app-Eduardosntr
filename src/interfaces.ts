@@ -2,8 +2,8 @@ import { FunkoType } from "./enum.js";
 import { FunkoGenre } from "./enum.js";
 
 /**
- * Interfaz que representa un Funko.
- * Contiene propiedades como ID, nombre, descripción, tipo, género, franquicia, etc.
+ * Interface that represents a Funko.
+ * It contains properties such as id, name, description, type, genre, franchise, exclusive, specialCharacteristic, and value.
  */
 export interface IFunko {
   id: number;
@@ -18,7 +18,10 @@ export interface IFunko {
   value: number;
 }
 
-
+/**
+ * Interface that represents a user.
+ * It contains properties such as user, id, name, description, type, genre, franchise, pieceNumber, exclusive, specialFeatures, and value.
+ */
 export interface  IUser {
   user: string;
   id: number;
@@ -34,8 +37,8 @@ export interface  IUser {
 }
 
 /**
- * Interfaz que representa una colección de Funkos.
- * Contiene un array de Funkos y su tamaño.
+ * Interface that represents a Funko manager.
+ * It contains methods to add, remove, and get Funkos.
  */
 export interface IFunkoManager {
   addFunko(funko: IFunko): void;
@@ -44,6 +47,7 @@ export interface IFunkoManager {
   getAllFunkos(): IFunko[];
 }
 
-
-
-
+export interface IUserID {
+  user: string
+  id: number;
+}

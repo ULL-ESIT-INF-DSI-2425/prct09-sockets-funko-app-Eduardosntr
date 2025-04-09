@@ -1,0 +1,2 @@
+// Anadir 
+node dist/command.js Add --u "user" --i 12 --n "Spiderman" --d "Funko de Spiderman" --t "Pop!" --g "Marvel" --f "A saber" --p 1 --e true --s "Spiderman" --v 50

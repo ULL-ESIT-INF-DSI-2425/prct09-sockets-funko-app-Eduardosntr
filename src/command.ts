@@ -1,10 +1,8 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { IUser } from "./interfaces.js";
+import { IUser, IUserID } from "./interfaces.js";
 import { FunkoManager } from "./funkoManager.js";
-import { FunkoType } from "./enum.js";
-import { FunkoGenre } from "./enum.js";
-import { Funko } from "./funko.js";
+import { sendRequestToServer } from "./client.js";
 
 export const argv = yargs(hideBin(process.argv))
   .command<IUser>(
@@ -79,26 +77,50 @@ export const argv = yargs(hideBin(process.argv))
       });
     },
     (args) => {
-      // Aquí args.user ya es de tipo string gracias a la tipificación
-      const user = new FunkoManager(args.user);
-
-      // Crear una instancia de Funko
-      const newFunko = new Funko(
-        args.id,
-        args.name,
-        args.description,
-        args.type as FunkoType,
-        args.gender as FunkoGenre,
-        args.franchise,
-        args.pieceNumber,
-        args.exclusive,
-        args.specialFeatures,
-        args.value
-      );
-
-      // Agregar el Funko al usuario
-    user.add(newFunko);
+      const request = {
+        type: 'add',
+        user: args.user,
+        funko: {
+          id: args.id,
+          name: args.name,
+          description: args.description,
+          type: args.type,
+          gender: args.gender,
+          franchise: args.franchise,
+          pieceNumber: args.pieceNumber,
+          exclusive: args.exclusive,
+          specialFeatures: args.specialFeatures,
+          value: args.value,
+        },
+      };
+      sendRequestToServer(request);
   }
 )
+
+  .command<IUserID>(
+    "Delete",
+    "Delete funko",
+    (yargs) => {
+      yargs.option("user", {
+        alias: "u",
+        type: "string",
+        demandOption: true,
+        description: "Nombre del usuario",
+      });
+      yargs.option("id", {
+        alias: "i",
+        type: "number",
+        demandOption: true,
+        description: "ID del funko",
+      });
+    }
+    ,
+  (args) => {
+    const user = new FunkoManager(args.user);
+    // Eliminar el Funko del usuario
+    user.removeFunko(args.id);
+  }
+)
+
 .demandCommand()
 .help().argv;

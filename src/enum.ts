@@ -18,4 +18,3 @@ export enum FunkoGenre {
   VIDEO_GAME = "VIDEO GAME",
   MARVEL = "MARVEL",
 }
-
