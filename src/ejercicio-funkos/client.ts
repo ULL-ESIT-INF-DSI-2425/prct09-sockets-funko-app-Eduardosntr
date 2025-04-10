@@ -11,12 +11,9 @@ export function sendRequestToServer(request: object) : void {
   client.on('data', (data) => {
     const response = JSON.parse(data.toString());
     if (response.success) {
-      console.log(chalk.green("Respuesta del servidor:"), response.message);
-      if (response.funkos) {
-        console.log(chalk.blue("Funkos recibidos:"), response.funkos);
-      }
+      console.log(chalk.green("Respuesta del servidor:"), response.message || "Sin mensaje");
     } else {
-      console.log(chalk.red("Error del servidor:"), response.message);
+      console.log(chalk.red("Error del servidor:"), response.message || "Sin mensaje de error");
     }
     client.end();
   });
